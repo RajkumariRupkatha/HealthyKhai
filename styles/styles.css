@@ -1,0 +1,388 @@
+/* ===== RESET DEFAULT MARGIN & PADDING ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ===== HEADER STYLING ===== */
+header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 110px;
+    padding: 10px 40px;
+    background: transparent; /* Ensures transparent background */
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+
+.header-icons img {
+    width: 30px; /* Keep cart icon small */
+    height: auto;
+    cursor: pointer;
+}
+
+/* ===== LOGO STYLING ===== */
+.logo-container {
+    flex: 1;
+    text-align: left;
+}
+
+.header-logo {
+    width: 250px;
+    height: auto;
+}
+
+/* ===== NAVIGATION STYLING ===== */
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Centers the navigation items */
+    align-items: center;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Ensures items are centered */
+    align-items: center;
+    gap: 40px; /* Keeps spacing between menu items */
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #265947;
+    font-weight: 300;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.header-icons {
+    flex: 1;
+    text-align: right;
+}
+
+/* ===== FIX ABOUT SECTION LAYOUT ===== */
+#about {
+    position: relative;
+    height: 100vh;
+    background-image: url("../assets/images/about-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px;
+}
+
+/* Blurry Background Overlay */
+#about::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+}
+
+/* Text inside Our Story */
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 1200px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Left Text Styling */
+.text-container {
+    text-align: left;
+    color: #265947;
+    font-weight: 400;
+    max-width: 50%;
+    font-size: 22px;
+}
+
+/* Right Circle Placeholder */
+.circle-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid #265947;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #265947;
+    font-weight: 400;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* ===== SPECIALS SECTION ===== */
+#specials {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+/* Specials Header */
+#specials h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #265947;
+    margin-bottom: 20px;
+}
+
+/* Swipeable Specials Wrapper */
+.specials-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Specials Container */
+.specials-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+}
+
+/* === SPECIALS WRAPPER (Centered Layout) === */
+.specials-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* === CIRCLE SPACING & SCALING === */
+.special-item {
+    position: absolute;
+    text-align: center;
+    transition: transform 0.5s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0.5;
+}
+
+/* === CIRCLE SIZES === */
+.special-item .circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid #265947;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Center Circle (Biggest) */
+.special-item.active .circle {
+    width: 240px;
+    height: 240px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* Medium Circles */
+.special-item.left .circle,
+.special-item.right .circle {
+    width: 160px;
+    height: 160px;
+}
+
+/* Smallest Circles */
+.special-item.far-left .circle,
+.special-item.far-right .circle {
+    width: 120px;
+    height: 120px;
+}
+
+/* === TEXT POSITION FIX (Center the Text Inside Circles) === */
+.special-item p {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Style for left arrow */
+.left-arrow {
+    position: absolute;
+    left: -80px; /* Move further left */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Style for right arrow */
+.right-arrow {
+    position: absolute;
+    right: -80px; /* Move further right */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Arrow Hover Effect */
+.left-arrow:hover,
+.right-arrow:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+/* ===== MENU SECTION ===== */
+#menu {
+    height: 100vh; /* Full screen height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+    background-color: #f9f9f9; /* Light background */
+}
+
+/* Menu Title */
+#menu h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #265947;
+    margin-bottom: 30px;
+}
+
+/* Menu Container */
+.menu-container {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+}
+
+/* Individual Menu Category */
+.menu-category {
+    flex: 1;
+    min-width: 250px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+}
+
+/* Menu Category Title */
+.menu-category h3 {
+    font-size: 22px;
+    color: #265947;
+    margin-bottom: 10px;
+}
+
+/* Menu Items */
+.menu-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-category li {
+    font-size: 18px;
+    margin: 5px 0;
+    color: #333;
+}
+/* ===== CONTACT SECTION STYLES ===== */
+#contact {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+    background-color: #f7f7f7;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 900px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.contact-info {
+    flex: 1;
+    text-align: left;
+    padding: 20px;
+}
+
+.contact-info h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #265947;
+}
+
+.contact-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.contact-form button {
+    padding: 10px;
+    background-color: #265947;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.contact-form button:hover {
+    background-color: #1f4d3c;
+}
