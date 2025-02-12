@@ -69,29 +69,30 @@
             <div class="menu-category">
                 <h3>Starters</h3>
                 <ul>
-                    <li>Garlic Bread</li>
-                    <li>Bruschetta</li>
-                    <li>Tomato Soup</li>
+                    <li>Garlic Bread <button onclick="addToCart('Garlic Bread', 5)">Add to Cart</button></li>
+                    <li>Bruschetta <button onclick="addToCart('Bruschetta', 6)">Add to Cart</button></li>
+                    <li>Tomato Soup <button onclick="addToCart('Tomato Soup', 7)">Add to Cart</button></li>
                 </ul>
             </div>
             <div class="menu-category">
                 <h3>Main Course</h3>
                 <ul>
-                    <li>Grilled Chicken</li>
-                    <li>Pasta Carbonara</li>
-                    <li>Vegetable Stir-Fry</li>
+                    <li>Grilled Chicken <button onclick="addToCart('Grilled Chicken', 15)">Add to Cart</button></li>
+                    <li>Pasta Carbonara <button onclick="addToCart('Pasta Carbonara', 12)">Add to Cart</button></li>
+                    <li>Vegetable Stir-Fry <button onclick="addToCart('Vegetable Stir-Fry', 10)">Add to Cart</button></li>
                 </ul>
             </div>
             <div class="menu-category">
                 <h3>Desserts</h3>
                 <ul>
-                    <li>Chocolate Cake</li>
-                    <li>Cheesecake</li>
-                    <li>Fruit Salad</li>
+                    <li>Chocolate Cake <button onclick="addToCart('Chocolate Cake', 8)">Add to Cart</button></li>
+                    <li>Cheesecake <button onclick="addToCart('Cheesecake', 9)">Add to Cart</button></li>
+                    <li>Fruit Salad <button onclick="addToCart('Fruit Salad', 7)">Add to Cart</button></li>
                 </ul>
             </div>
         </div>
     </section>
+    
 
     <!-- Contact Section -->
     <section id="contact">
@@ -112,6 +113,16 @@
             </form>
         </div>
     </section>
+
+<!-- Cart Overlay -->
+<div id="cart-overlay">
+    <div id="cart">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <button id="checkout-button">Checkout</button>
+    </div>
+</div>
+
 
 
     <script src="scripts/main.js"></script>
