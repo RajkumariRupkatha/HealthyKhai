@@ -18,6 +18,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const cartItemsContainer = document.getElementById("cart-items");
     const closeCartButton = document.getElementById("close-cart-button");
 
+    // ✅ MOBILE RESPONSIVE NAVIGATION (Hamburger Menu)
+    const menuToggle = document.createElement("div");
+    menuToggle.classList.add("menu-toggle");
+    menuToggle.innerHTML = "☰"; // Hamburger icon
+
+    const nav = document.querySelector("nav");
+    nav.prepend(menuToggle);
+
+    menuToggle.addEventListener("click", function () {
+        document.querySelector("nav ul").classList.toggle("show");
+    });
+
+
     let lastScrollY = window.scrollY;
     let currentIndex = Math.floor(specialItems.length / 2); // Start in the middle
 
