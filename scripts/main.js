@@ -16,66 +16,64 @@ document.addEventListener("DOMContentLoaded", function () {
     const cartIcon = document.querySelector(".cart-icon");
     const cartOverlay = document.getElementById("cart-overlay");
     const cartItemsContainer = document.getElementById("cart-items");
-    const closeCartButton = document.getElementById("close-cart-button");
+    const cartLink = document.getElementById("cart-link");
 
     // ✅ MOBILE RESPONSIVE NAVIGATION (Hamburger Menu)
     const menuToggle = document.createElement("div");
     menuToggle.classList.add("menu-toggle");
     menuToggle.innerHTML = "☰"; // Hamburger icon
 
-    // Add to the header
+    // Add the menu toggle button inside the header
     const nav = document.querySelector("nav");
     nav.prepend(menuToggle);
 
-    // Toggle navigation on click
+    // ✅ Toggle Navigation and Cart Inside Menu
     menuToggle.addEventListener("click", function () {
-        document.querySelector("nav ul").classList.toggle("show");
+        const menu = document.querySelector("nav ul");
+        menu.classList.toggle("show");
+
+        // If menu opens, show cart inside it
+        if (menu.classList.contains("show")) {
+            cartOverlay.classList.add("show");
+        } else {
+            cartOverlay.classList.remove("show");
+        }
     });
-    
+
+    // ✅ Ensure Clicking "Cart" Inside Menu Opens It
+    cartLink.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent default link behavior
+
+        // Toggle cart view inside menu
+        cartOverlay.classList.toggle("show");
+    });
+
+    // ✅ Hide Menu and Cart When Clicking Outside (Mobile Only)
+    document.addEventListener("click", function (event) {
+        const menu = document.querySelector("nav ul");
+
+        if (window.innerWidth <= 768) {
+            if (!menu.contains(event.target) && !menuToggle.contains(event.target) && !cartOverlay.contains(event.target)) {
+                menu.classList.remove("show");
+                cartOverlay.classList.remove("show");
+            }
+        }
+    });
+
     let lastScrollY = window.scrollY;
     let currentIndex = Math.floor(specialItems.length / 2); // Start in the middle
 
     // ✅ HEADER SCROLL LOGIC (Hide on Scroll Down, Show on Scroll Up)
-window.addEventListener("scroll", () => {
-    let currentScrollY = window.scrollY;
-
-    if (currentScrollY > lastScrollY + 10) { // Only hide when scrolling significantly down
-        header.style.transform = "translateY(-100%)";
-    } else if (currentScrollY < lastScrollY - 10) { // Only show when scrolling significantly up
-        header.style.transform = "translateY(0)";
-    }
-
-    lastScrollY = currentScrollY;
-});
-
-    // ✅ DEBOUNCED SCROLL EVENT TO UPDATE HEADER TEXT
-    let debounceTimer;
     window.addEventListener("scroll", () => {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-            let scrollPosition = window.scrollY;
+        let currentScrollY = window.scrollY;
 
-            // Keep header transparent
-            header.style.background = "transparent";
+        if (currentScrollY > lastScrollY + 10) {
+            header.style.transform = "translateY(-100%)";
+        } else if (currentScrollY < lastScrollY - 10) {
+            header.style.transform = "translateY(0)";
+        }
 
-            // Update header text based on scroll position
-            if (scrollPosition < specialsSection.offsetTop - 100) {
-                headerText.textContent = "Our Story";
-            } else if (scrollPosition >= specialsSection.offsetTop - 100 && scrollPosition < menuSection.offsetTop - 100) {
-                headerText.textContent = "Specials";
-            } else if (scrollPosition >= menuSection.offsetTop - 100 && scrollPosition < contactSection.offsetTop - 100) {
-                headerText.textContent = "Menu";
-            } else if (scrollPosition >= contactSection.offsetTop - 100) {
-                headerText.textContent = "Contact Us";
-            }
-
-            // Smooth transition for text update
-            headerText.style.transition = "opacity 0.3s ease-in-out";
-            headerText.style.opacity = "0.7";
-            setTimeout(() => {
-                headerText.style.opacity = "1";
-            }, 200);
-        }, 100);
+        lastScrollY = currentScrollY;
     });
 
     // ✅ UPDATE SPECIALS VIEW
@@ -128,24 +126,25 @@ window.addEventListener("scroll", () => {
 
     updateSpecialsView();
 
-    // ✅ CART FUNCTIONALITY - SHOW ON HOVER
+    // ✅ CART FUNCTIONALITY - DISABLE HOVER ON MOBILE
     let cartTimeout;
 
     cartIcon.addEventListener("mouseenter", () => {
-        clearTimeout(cartTimeout); 
-        cartOverlay.style.right = "0"; // Show cart
+        if (window.innerWidth > 768) { // Prevent hover effect on mobile
+            clearTimeout(cartTimeout);
+            cartOverlay.style.right = "0"; // Show cart
+        }
     });
-    
+
     cartOverlay.addEventListener("mouseenter", () => {
-        clearTimeout(cartTimeout); // Prevent hiding when inside cart
+        clearTimeout(cartTimeout);
     });
-    
+
     cartOverlay.addEventListener("mouseleave", () => {
         cartTimeout = setTimeout(() => {
-            cartOverlay.style.right = "-350px"; // Hide cart after delay
-        }, 300); // Small delay to prevent accidental closing
+            cartOverlay.style.right = "-350px";
+        }, 300);
     });
-    
 
     // ✅ SHOW CART FUNCTION
     function showCart() {

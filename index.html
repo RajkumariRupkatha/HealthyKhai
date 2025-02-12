@@ -25,7 +25,17 @@
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li><a href="#" id="cart-link">Cart</a></li>
             </ul>
+        
+            <!-- Cart Overlay (Now inside the menu) -->
+            <div id="cart-overlay">
+                <div id="cart">
+                    <h2>Your Cart</h2>
+                    <div id="cart-items"></div>
+                    <button id="checkout-button">Checkout</button>
+                </div>
+            </div>
         </nav>
+        
         
     
         <div class="header-icons">
@@ -116,17 +126,6 @@
             </form>
         </div>
     </section>
-
-<!-- Cart Overlay -->
-<div id="cart-overlay">
-    <div id="cart">
-        <h2>Your Cart</h2>
-        <div id="cart-items"></div>
-        <button id="checkout-button">Checkout</button>
-    </div>
-</div>
-
-
 
     <script src="scripts/main.js"></script>
 </body>

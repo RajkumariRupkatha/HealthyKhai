@@ -24,9 +24,16 @@ header {
 
 
 .header-icons img {
-    width: 30px; /* Keep cart icon small */
+    width: 30px;
     height: auto;
     cursor: pointer;
+}
+
+/* Hide cart icon in mobile */
+@media (max-width: 768px) {
+    .cart-icon {
+        display: none;
+    }
 }
 
 /* ===== LOGO STYLING ===== */
@@ -486,11 +493,9 @@ nav ul li a {
 }
 
 /* ===== MOBILE RESPONSIVENESS ===== */
-@media screen and (max-width: 768px) {
-
-    /* HEADER NAVIGATION */
+@media (max-width: 768px) {
     nav ul {
-        display: none; /* Hide menu */
+        display: none;
         flex-direction: column;
         background: white;
         width: 100%;
@@ -502,6 +507,24 @@ nav ul li a {
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
     }
 
+    /* Ensure Cart Overlay is part of menu */
+    #cart-overlay {
+        display: none;
+        position: absolute;
+        top: 120px; /* Appears below menu */
+        right: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 20px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    /* Show cart inside menu when toggled */
+    #cart-overlay.show {
+        display: block;
+    }
+
     .menu-toggle {
         display: block;
         cursor: pointer;
@@ -511,7 +534,7 @@ nav ul li a {
         right: 25px;
         background: none;
         border: none;
-    }
+    }    
 
     nav ul.show {
         display: flex; /* Show menu when toggled */
@@ -545,8 +568,20 @@ nav ul li a {
 
     /* ==== CART INSIDE HAMBURGER MENU ==== */
     /* Hide cart by default on desktop */
+/* Hide cart by default on desktop */
     #cart-link {
         display: none;
+    }
+
+    /* Show cart inside menu in mobile */
+    @media (max-width: 768px) {
+        nav ul li#cart-link {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            padding: 12px;
+        }
     }
 
     /* Show cart inside mobile menu */
