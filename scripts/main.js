@@ -23,14 +23,15 @@ document.addEventListener("DOMContentLoaded", function () {
     menuToggle.classList.add("menu-toggle");
     menuToggle.innerHTML = "☰"; // Hamburger icon
 
+    // Add to the header
     const nav = document.querySelector("nav");
     nav.prepend(menuToggle);
 
+    // Toggle navigation on click
     menuToggle.addEventListener("click", function () {
         document.querySelector("nav ul").classList.toggle("show");
     });
-
-
+    
     let lastScrollY = window.scrollY;
     let currentIndex = Math.floor(specialItems.length / 2); // Start in the middle
 

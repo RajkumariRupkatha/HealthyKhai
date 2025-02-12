@@ -544,3 +544,76 @@ nav ul li a {
         width: 100%;
     }
 }
+
+/* Ensure the body doesn't cause horizontal scrolling */
+body {
+    max-width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    font-size: 16px; /* Ensure readability */
+}
+
+/* Improve navbar styling */
+nav {
+    width: 100%;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    /* Fix navigation for mobile */
+    .menu-toggle {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 10px;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+    }
+
+    nav ul {
+        display: none; /* Hide menu by default */
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        width: 100%;
+        background-color: white;
+        text-align: center;
+        padding: 10px;
+    }
+
+    nav ul.show {
+        display: flex; /* Show menu when toggled */
+    }
+
+    /* Make menu items full width */
+    nav ul li {
+        padding: 10px;
+    }
+
+    /* Fix menu layout */
+    .menu-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-category {
+        width: 90%; /* Ensure it fits within the screen */
+    }
+
+    /* Ensure text and images scale properly */
+    h1, h2, h3, p {
+        font-size: clamp(14px, 4vw, 22px);
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
